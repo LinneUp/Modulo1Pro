@@ -1,5 +1,6 @@
 package br.com.linneup.firtsproject;
 
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,15 +68,13 @@ public class AlunController {
     public ResponseEntity update(@RequestBody final Message aluno) {
         Alunos.stream().filter(upd -> upd.getId().equals(aluno.getId()))
                 .forEach(upd -> upd.setAluno(aluno.getAluno()));
-        Alunos.stream().filter(upda -> upda.getIdade().equals(aluno.getIdade()))
-                .forEach(upd -> upd.setIdade(aluno.getIdade()));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") Integer id) {
+    public ResponseEntity delete(@PathVariable("id") Integer id, Integer idade) {
         Alunos.removeIf(del -> del.getId().equals(id));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
