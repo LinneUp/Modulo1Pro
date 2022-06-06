@@ -80,10 +80,4 @@ public class AlunController {
 
     }
 
-    @DeleteMapping("/{idade}")
-    public ResponseEntity deleteIdade(@PathVariable("idade") Integer idade) {
-        Alunos.removeIf(dele -> dele.getIdade().equals(idade));
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-    }
 }
